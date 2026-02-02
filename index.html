@@ -30,24 +30,88 @@
       </section>
 
       <div id="overlay" class="overlay" aria-hidden="true">
-        <div class="popup" role="dialog" aria-modal="true" aria-label="Rose surprise">
+        <div class="popup" role="dialog" aria-modal="true" aria-label="Cat surprise">
           <button id="closeBtn" class="close" type="button" aria-label="Close">
             ×
           </button>
 
-          <div class="roseWrap" aria-hidden="true">
-            <div class="rose" id="rose">
-              <div class="petal p1"></div>
-              <div class="petal p2"></div>
-              <div class="petal p3"></div>
-              <div class="petal p4"></div>
-              <div class="petal p5"></div>
-              <div class="petal p6"></div>
-              <div class="bud"></div>
+          <div class="sceneWrap" aria-hidden="true">
+            <div class="scene" id="scene">
+              <svg class="catSvg" viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A cute cat giving a rose">
+                <defs>
+                  <linearGradient id="fur" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0" stop-color="#3b2e34"/>
+                    <stop offset="1" stop-color="#1f171a"/>
+                  </linearGradient>
+                  <linearGradient id="fur2" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#4a3b43"/>
+                    <stop offset="1" stop-color="#251b1f"/>
+                  </linearGradient>
+                  <linearGradient id="rosePetal" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0" stop-color="#ff7aa7"/>
+                    <stop offset="1" stop-color="#ff2e5f"/>
+                  </linearGradient>
+                </defs>
 
-              <div class="stem"></div>
-              <div class="leaf l1"></div>
-              <div class="leaf l2"></div> 
+                <g id="sceneBg">
+                  <path d="M40 210 C130 180, 200 230, 260 210 C330 185, 410 230, 480 205" fill="none" stroke="rgba(177,11,56,.18)" stroke-width="10" stroke-linecap="round"/>
+                  <circle cx="410" cy="64" r="26" fill="rgba(255,46,95,.12)"/>
+                  <circle cx="452" cy="72" r="14" fill="rgba(255,115,162,.18)"/>
+                </g>
+
+                <!-- Cat group (slides in) -->
+                <g id="catGroup">
+                  <!-- Tail -->
+                  <path d="M96 182 C52 160, 62 120, 102 126 C128 130, 128 160, 112 168" fill="none" stroke="url(#fur2)" stroke-width="18" stroke-linecap="round"/>
+
+                  <!-- Body -->
+                  <ellipse cx="170" cy="170" rx="88" ry="62" fill="url(#fur)"/>
+
+                  <!-- Head -->
+                  <g id="head">
+                    <path d="M120 132 L142 96 L160 128 Z" fill="url(#fur2)"/>
+                    <path d="M188 128 L206 96 L228 132 Z" fill="url(#fur2)"/>
+                    <circle cx="174" cy="132" r="58" fill="url(#fur)"/>
+                    <circle cx="154" cy="130" r="6" fill="#f7e8ee" opacity=".85"/>
+                    <circle cx="198" cy="130" r="6" fill="#f7e8ee" opacity=".85"/>
+                    <circle cx="154" cy="130" r="3" fill="#111"/>
+                    <circle cx="198" cy="130" r="3" fill="#111"/>
+                    <path d="M172 145 C176 148, 180 148, 184 145" fill="none" stroke="#ffb3c7" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M160 150 C170 158, 182 158, 192 150" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+                    <!-- Whiskers -->
+                    <path d="M126 146 L156 150" stroke="#f7e8ee" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                    <path d="M126 158 L156 156" stroke="#f7e8ee" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                    <path d="M222 146 L192 150" stroke="#f7e8ee" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                    <path d="M222 158 L192 156" stroke="#f7e8ee" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                  </g>
+
+                  <!-- Front paws (one gives rose) -->
+                  <ellipse cx="135" cy="208" rx="26" ry="16" fill="url(#fur2)"/>
+                  <g id="pawGroup">
+                    <ellipse cx="210" cy="206" rx="30" ry="18" fill="url(#fur2)"/>
+                    <path d="M234 196 C260 188, 288 194, 308 206" fill="none" stroke="url(#fur2)" stroke-width="22" stroke-linecap="round"/>
+                    <ellipse cx="318" cy="208" rx="24" ry="16" fill="url(#fur2)"/>
+                  </g>
+                </g>
+
+                <!-- Rose gift (pops in near paw) -->
+                <g id="roseGroup">
+                  <path d="M352 208 L352 152" stroke="#2f8f4e" stroke-width="8" stroke-linecap="round"/>
+                  <path d="M352 174 C336 166, 330 178, 344 188" fill="#36b169"/>
+                  <path d="M352 182 C368 176, 374 188, 360 196" fill="#36b169"/>
+                  <g id="petals">
+                    <path d="M352 144 C334 140, 334 120, 352 124 C370 120, 370 140, 352 144" fill="url(#rosePetal)"/>
+                    <path d="M352 126 C338 120, 344 104, 356 108 C372 108, 376 124, 362 128" fill="url(#rosePetal)" opacity=".95"/>
+                    <circle cx="352" cy="126" r="8" fill="#ff9bbd"/>
+                  </g>
+                </g>
+
+                <!-- Sparkles -->
+                <g id="sparkles" opacity="0">
+                  <path d="M398 138 L404 152 L418 158 L404 164 L398 178 L392 164 L378 158 L392 152 Z" fill="rgba(255,46,95,.5)"/>
+                  <path d="M330 120 L334 130 L344 134 L334 138 L330 148 L326 138 L316 134 L326 130 Z" fill="rgba(255,115,162,.55)"/>
+                </g>
+              </svg>
             </div>
           </div>
 

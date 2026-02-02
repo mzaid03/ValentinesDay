@@ -2,7 +2,7 @@ const overlay = document.getElementById('overlay');
 const revealBtn = document.getElementById('revealBtn');
 const againBtn = document.getElementById('againBtn');
 const closeBtn = document.getElementById('closeBtn');
-const rose = document.getElementById('rose');
+const scene = document.getElementById('scene');
 const floatLayer = document.getElementById('floatLayer');
 
 let heartsTimer = null;
@@ -12,11 +12,11 @@ function openOverlay() {
   overlay.setAttribute('aria-hidden', 'false');
   againBtn.hidden = false;
 
-  // Restart the rose animation reliably
-  rose.classList.remove('is-animated');
+  // Restart the surprise animation reliably
+  scene.classList.remove('is-animated');
   // Force reflow
-  void rose.offsetWidth;
-  rose.classList.add('is-animated');
+  void scene.offsetWidth;
+  scene.classList.add('is-animated');
 
   burstHearts(14);
   startHearts(1200);

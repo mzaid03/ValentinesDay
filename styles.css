@@ -145,14 +145,22 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
   text-align:center;
 }
 
-.roseWrap{
+.sceneWrap{
   display:grid;
   place-items:center;
-  padding: 22px 18px 8px;
+  padding: 18px 18px 6px;
   background:
     radial-gradient(500px 220px at 50% 0%, rgba(255,46,95,.16), transparent 60%),
     radial-gradient(380px 220px at 60% 20%, rgba(255,115,162,.18), transparent 65%);
 }
+
+.scene{
+  width: min(480px, 92vw);
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.12));
+  transform: translateY(6px);
+}
+
+.catSvg{ width:100%; height:auto; display:block; }
 
 .popupText{ padding: 8px 20px 20px; text-align:center; }
 .popupTitle{
@@ -164,111 +172,75 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 .popupMsg{ margin:0; font-size:15px; line-height:1.5; opacity:.9; }
 
-/* Rose */
-.rose{
-  position:relative;
-  width: 180px;
-  height: 220px;
-  transform: translateY(8px) scale(.9);
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,.12));
+/* Cat surprise animation */
+#catGroup,
+#pawGroup,
+#roseGroup,
+#sparkles{
+  transform-box: fill-box;
 }
 
-.petal{
-  position:absolute;
-  left:50%;
-  top:48px;
-  width: 74px;
-  height: 74px;
-  border-radius: 18px 58px 18px 58px;
-  background: radial-gradient(circle at 30% 30%, var(--rose2), var(--rose));
-  transform-origin: 20% 80%;
-  opacity:0;
+#catGroup{ transform-origin: 50% 80%; }
+#pawGroup{ transform-origin: 30% 60%; }
+#roseGroup{ transform-origin: 50% 85%; }
+#sparkles{ transform-origin: 50% 50%; }
+
+.scene #catGroup{
+  transform: translateX(-220px);
+  opacity: 0;
 }
 
-.bud{
-  position:absolute;
-  left:50%;
-  top:66px;
-  width: 54px;
-  height: 54px;
-  transform: translateX(-50%) rotate(18deg);
-  border-radius: 18px 40px 18px 40px;
-  background: radial-gradient(circle at 30% 30%, #ff8db2, var(--rose));
-  opacity:0;
+.scene #pawGroup{
+  transform: translateX(0) rotate(0deg);
 }
 
-.stem{
-  position:absolute;
-  left:50%;
-  top:110px;
-  width: 12px;
-  height: 110px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, #39a860, var(--stem));
-  border-radius: 999px;
-  opacity:0;
+.scene #roseGroup{
+  transform: translateX(20px) scale(0);
+  opacity: 0;
 }
 
-.leaf{
-  position:absolute;
-  width: 56px;
-  height: 26px;
-  background: radial-gradient(circle at 30% 50%, #5be690, var(--leaf));
-  border-radius: 26px 26px 26px 6px;
-  transform-origin: 0% 50%;
-  opacity:0;
+.scene #sparkles{
+  opacity: 0;
+  transform: scale(.6);
 }
 
-.leaf.l1{ left: 50%; top: 150px; transform: translateX(-6px) rotate(-12deg); }
-.leaf.l2{ left: 50%; top: 168px; transform: translateX(-6px) rotate(18deg) scaleX(-1); }
-
-/* Petal positions */
-.p1{ transform: translate(-50%, 0) rotate(10deg) scale(.2); }
-.p2{ transform: translate(-55%, -8px) rotate(-26deg) scale(.2); }
-.p3{ transform: translate(-35%, -6px) rotate(44deg) scale(.2); }
-.p4{ transform: translate(-60%, 8px) rotate(-58deg) scale(.2); }
-.p5{ transform: translate(-28%, 10px) rotate(70deg) scale(.2); }
-.p6{ transform: translate(-50%, -18px) rotate(16deg) scale(.2); width:62px; height:62px; }
-
-/* Reveal animation trigger */
-.rose.is-animated .petal,
-.rose.is-animated .bud,
-.rose.is-animated .stem,
-.rose.is-animated .leaf{
-  opacity:1;
+.scene.is-animated #catGroup{
+  animation: catEnter 1.0s cubic-bezier(.2,.9,.2,1) both;
 }
 
-.rose.is-animated .bud{ animation: popIn .55s cubic-bezier(.2,.9,.2,1) both; }
-.rose.is-animated .stem{ animation: grow .65s cubic-bezier(.2,.9,.2,1) .1s both; }
-.rose.is-animated .leaf.l1{ animation: leafIn .55s cubic-bezier(.2,.9,.2,1) .35s both; }
-.rose.is-animated .leaf.l2{ animation: leafIn .55s cubic-bezier(.2,.9,.2,1) .45s both; }
-
-.rose.is-animated .p1{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .05s both; }
-.rose.is-animated .p2{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .12s both; }
-.rose.is-animated .p3{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .18s both; }
-.rose.is-animated .p4{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .24s both; }
-.rose.is-animated .p5{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .30s both; }
-.rose.is-animated .p6{ animation: petalIn .55s cubic-bezier(.2,.9,.2,1) .36s both; }
-
-@keyframes popIn{
-  from{ transform: translateX(-50%) translateY(10px) rotate(8deg) scale(.65); filter: blur(2px); }
-  to{ transform: translateX(-50%) rotate(18deg) scale(1); filter: blur(0); }
+.scene.is-animated #pawGroup{
+  animation: pawGive .65s cubic-bezier(.2,.9,.2,1) .85s both;
 }
 
-@keyframes grow{
-  from{ height:0; opacity:0; }
-  to{ height:110px; opacity:1; }
+.scene.is-animated #roseGroup{
+  animation: rosePop .55s cubic-bezier(.2,.95,.2,1) 1.15s both;
 }
 
-@keyframes petalIn{
-  from{ opacity:0; transform: translate(-50%, 6px) rotate(0deg) scale(.18); }
-  65%{ opacity:1; }
-  to{ opacity:1; }
+.scene.is-animated #sparkles{
+  animation: sparkle .65s ease-out 1.25s both;
 }
 
-@keyframes leafIn{
-  from{ opacity:0; transform: translateX(-6px) rotate(0deg) scale(.2); }
-  to{ opacity:1; }
+@keyframes catEnter{
+  from{ opacity:0; transform: translateX(-240px) scale(.98); }
+  60%{ opacity:1; }
+  to{ opacity:1; transform: translateX(0) scale(1); }
+}
+
+@keyframes pawGive{
+  from{ transform: translateX(0) rotate(0deg); }
+  to{ transform: translateX(18px) rotate(-6deg); }
+}
+
+@keyframes rosePop{
+  from{ opacity:0; transform: translateX(20px) scale(.0); filter: blur(2px); }
+  70%{ opacity:1; transform: translateX(0) scale(1.08); filter: blur(0); }
+  to{ opacity:1; transform: translateX(0) scale(1); }
+}
+
+@keyframes sparkle{
+  0%{ opacity:0; transform: scale(.6); }
+  30%{ opacity:1; transform: scale(1); }
+  100%{ opacity:0; transform: scale(1.15); }
 }
 
 /* Floating hearts */
@@ -311,8 +283,10 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 @media (prefers-reduced-motion: reduce){
-  .btn, .overlay, .popup, .heart, .rose *{ transition:none !important; animation:none !important; }
+  .btn, .overlay, .popup, .heart, .scene *{ transition:none !important; animation:none !important; }
   .overlay.is-open{ opacity:1; }
   .popup{ opacity:1; transform:none; }
-  .rose .petal, .rose .bud, .rose .stem, .rose .leaf{ opacity:1; }
+  .scene #catGroup{ opacity:1; transform:none; }
+  .scene #roseGroup{ opacity:1; transform:none; }
+  .scene #sparkles{ opacity:1; transform:none; }
 }
