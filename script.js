@@ -24,8 +24,8 @@ function openOverlay() {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReduced) {
     // Sync with the main animation beats
-    window.setTimeout(() => burstHearts(8), 900);
-    window.setTimeout(() => burstHearts(10), 1650);
+    window.setTimeout(() => burstHearts(8), 1050);
+    window.setTimeout(() => burstHearts(10), 1750);
   }
 }
 

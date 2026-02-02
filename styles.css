@@ -162,6 +162,12 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
 .catSvg{ width:100%; height:auto; display:block; }
 
+.scene #catGroup,
+.scene #pawGroup,
+.scene #roseGroup{
+  will-change: transform, opacity;
+}
+
 .popupText{ padding: 8px 20px 20px; text-align:center; }
 .popupTitle{
   margin: 6px 0 6px;
@@ -218,13 +224,11 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 .scene.is-animated #catGroup{
-  animation:
-    catEnter .85s cubic-bezier(.2,.9,.2,1) both,
-    catTurn .75s cubic-bezier(.2,.9,.2,1) .75s both;
+  animation: catStory 1.55s cubic-bezier(.2,.95,.15,1) both;
 }
 
 .scene.is-animated #tailGroup{
-  animation: tailWag .55s ease-in-out .2s infinite alternate;
+  animation: tailWag .6s ease-in-out .2s infinite alternate;
 }
 
 .scene.is-animated #head{
@@ -240,41 +244,40 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 .scene.is-animated #pawGroup{
-  animation: pawGive .7s cubic-bezier(.2,.9,.2,1) 1.25s both;
+  animation: pawGive .95s cubic-bezier(.18,.9,.12,1) 1.15s both;
 }
 
 .scene.is-animated #roseGroup{
   animation:
-    rosePop .55s cubic-bezier(.2,.95,.2,1) 1.55s both,
-    roseWiggle 1.05s ease-in-out 2.2s infinite;
+    rosePop .8s cubic-bezier(.18,.95,.12,1) 1.45s both,
+    roseWiggle 1.25s ease-in-out 2.35s infinite;
 }
 
 .scene.is-animated #sparkles{
   animation: sparkle .7s ease-out 1.75s both;
 }
 
-@keyframes catEnter{
-  from{ opacity:0; transform: translateX(-260px) scaleX(-1) scale(.98); }
-  60%{ opacity:1; }
-  to{ opacity:1; transform: translateX(0) scaleX(-1) scale(1); }
-}
-
-@keyframes catTurn{
-  0%{ transform: translateX(0) scaleX(-1) rotate(0deg); }
-  55%{ transform: translateX(0) scaleX(.2) rotate(1deg); }
-  75%{ transform: translateX(0) scaleX(1.05) rotate(-1deg); }
-  100%{ transform: translateX(0) scaleX(1) rotate(0deg); }
+@keyframes catStory{
+  0%{ opacity:0; transform: translateX(-260px) scaleX(-1) scale(.98); }
+  45%{ opacity:1; transform: translateX(0) scaleX(-1) scale(1); }
+  62%{ opacity:1; transform: translateX(0) scaleX(-.15) scale(1); }
+  70%{ opacity:1; transform: translateX(0) scaleX(.01) scale(1); }
+  78%{ opacity:1; transform: translateX(0) scaleX(.35) scale(1.01); }
+  100%{ opacity:1; transform: translateX(0) scaleX(1) scale(1); }
 }
 
 @keyframes pawGive{
-  from{ transform: translateX(0) rotate(0deg); }
-  to{ transform: translateX(24px) rotate(-8deg); }
+  0%{ transform: translateX(0) rotate(0deg); }
+  35%{ transform: translateX(10px) rotate(-4deg); }
+  70%{ transform: translateX(26px) rotate(-8deg); }
+  100%{ transform: translateX(24px) rotate(-6deg); }
 }
 
 @keyframes rosePop{
-  from{ opacity:0; transform: translateX(26px) scale(.0) rotate(-10deg); filter: blur(2px); }
-  70%{ opacity:1; transform: translateX(0) scale(1.1) rotate(6deg); filter: blur(0); }
-  to{ opacity:1; transform: translateX(0) scale(1) rotate(0deg); }
+  0%{ opacity:0; transform: translateX(26px) translateY(6px) scale(.0) rotate(-10deg); filter: blur(2px); }
+  55%{ opacity:1; transform: translateX(2px) translateY(-2px) scale(1.12) rotate(7deg); filter: blur(0); }
+  80%{ opacity:1; transform: translateX(0) translateY(0) scale(.98) rotate(-2deg); }
+  100%{ opacity:1; transform: translateX(0) translateY(0) scale(1) rotate(0deg); }
 }
 
 @keyframes roseWiggle{
