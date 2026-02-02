@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ff4d7d" />
+    <title>Happy Valentine’s Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card" aria-label="Valentine message">
+        <p class="eyebrow">For my fiancé</p>
+        <h1 class="title">Happy Valentine’s Day, <span id="name">My Love</span></h1>
+        <p class="subtitle">
+          I love you more than words. I made you something tiny and cute—press the button.
+        </p>
+
+        <div class="actions">
+          <button id="revealBtn" class="btn" type="button">
+            Click for a surprise
+          </button>
+          <button id="againBtn" class="btn btn-ghost" type="button" hidden>
+            Again
+          </button>
+        </div>
+
+        <p class="note">Tip: You can edit the name inside <code>index.html</code>.</p>
+      </section>
+
+      <div id="overlay" class="overlay" aria-hidden="true">
+        <div class="popup" role="dialog" aria-modal="true" aria-label="Rose surprise">
+          <button id="closeBtn" class="close" type="button" aria-label="Close">
+            ×
+          </button>
+
+          <div class="roseWrap" aria-hidden="true">
+            <div class="rose" id="rose">
+              <div class="petal p1"></div>
+              <div class="petal p2"></div>
+              <div class="petal p3"></div>
+              <div class="petal p4"></div>
+              <div class="petal p5"></div>
+              <div class="petal p6"></div>
+              <div class="bud"></div>
+
+              <div class="stem"></div>
+              <div class="leaf l1"></div>
+              <div class="leaf l2"></div>
+            </div>
+          </div>
+
+          <div class="popupText">
+            <h2 class="popupTitle">A rose for you</h2>
+            <p class="popupMsg" id="popupMsg">
+              You’re my favorite person, my best friend, and my forever.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="floatLayer" class="floatLayer" aria-hidden="true"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
