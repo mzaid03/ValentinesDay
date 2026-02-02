@@ -174,6 +174,10 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
 /* Cat surprise animation */
 #catGroup,
+#tailGroup,
+#head,
+#faceGroup,
+.eye,
 #pawGroup,
 #roseGroup,
 #sparkles{
@@ -181,13 +185,22 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 #catGroup{ transform-origin: 50% 80%; }
+#tailGroup{ transform-origin: 70% 35%; }
+#head{ transform-origin: 55% 55%; }
+#faceGroup{ transform-origin: 50% 50%; }
+.eye{ transform-origin: 50% 50%; }
 #pawGroup{ transform-origin: 30% 60%; }
 #roseGroup{ transform-origin: 50% 85%; }
 #sparkles{ transform-origin: 50% 50%; }
 
 .scene #catGroup{
-  transform: translateX(-220px);
+  transform: translateX(-240px) scaleX(-1);
   opacity: 0;
+}
+
+.scene #faceGroup{
+  opacity: 0;
+  transform: scale(.96);
 }
 
 .scene #pawGroup{
@@ -195,7 +208,7 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 .scene #roseGroup{
-  transform: translateX(20px) scale(0);
+  transform: translateX(26px) scale(0) rotate(-10deg);
   opacity: 0;
 }
 
@@ -205,42 +218,97 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 }
 
 .scene.is-animated #catGroup{
-  animation: catEnter 1.0s cubic-bezier(.2,.9,.2,1) both;
+  animation:
+    catEnter .85s cubic-bezier(.2,.9,.2,1) both,
+    catTurn .75s cubic-bezier(.2,.9,.2,1) .75s both;
+}
+
+.scene.is-animated #tailGroup{
+  animation: tailWag .55s ease-in-out .2s infinite alternate;
+}
+
+.scene.is-animated #head{
+  animation: headBob 1.2s ease-in-out 1.0s infinite;
+}
+
+.scene.is-animated #faceGroup{
+  animation: faceIn .35s ease-out 1.25s both;
+}
+
+.scene.is-animated .eye{
+  animation: blink 4.2s ease-in-out 2.0s infinite;
 }
 
 .scene.is-animated #pawGroup{
-  animation: pawGive .65s cubic-bezier(.2,.9,.2,1) .85s both;
+  animation: pawGive .7s cubic-bezier(.2,.9,.2,1) 1.25s both;
 }
 
 .scene.is-animated #roseGroup{
-  animation: rosePop .55s cubic-bezier(.2,.95,.2,1) 1.15s both;
+  animation:
+    rosePop .55s cubic-bezier(.2,.95,.2,1) 1.55s both,
+    roseWiggle 1.05s ease-in-out 2.2s infinite;
 }
 
 .scene.is-animated #sparkles{
-  animation: sparkle .65s ease-out 1.25s both;
+  animation: sparkle .7s ease-out 1.75s both;
 }
 
 @keyframes catEnter{
-  from{ opacity:0; transform: translateX(-240px) scale(.98); }
+  from{ opacity:0; transform: translateX(-260px) scaleX(-1) scale(.98); }
   60%{ opacity:1; }
-  to{ opacity:1; transform: translateX(0) scale(1); }
+  to{ opacity:1; transform: translateX(0) scaleX(-1) scale(1); }
+}
+
+@keyframes catTurn{
+  0%{ transform: translateX(0) scaleX(-1) rotate(0deg); }
+  55%{ transform: translateX(0) scaleX(.2) rotate(1deg); }
+  75%{ transform: translateX(0) scaleX(1.05) rotate(-1deg); }
+  100%{ transform: translateX(0) scaleX(1) rotate(0deg); }
 }
 
 @keyframes pawGive{
   from{ transform: translateX(0) rotate(0deg); }
-  to{ transform: translateX(18px) rotate(-6deg); }
+  to{ transform: translateX(24px) rotate(-8deg); }
 }
 
 @keyframes rosePop{
-  from{ opacity:0; transform: translateX(20px) scale(.0); filter: blur(2px); }
-  70%{ opacity:1; transform: translateX(0) scale(1.08); filter: blur(0); }
-  to{ opacity:1; transform: translateX(0) scale(1); }
+  from{ opacity:0; transform: translateX(26px) scale(.0) rotate(-10deg); filter: blur(2px); }
+  70%{ opacity:1; transform: translateX(0) scale(1.1) rotate(6deg); filter: blur(0); }
+  to{ opacity:1; transform: translateX(0) scale(1) rotate(0deg); }
+}
+
+@keyframes roseWiggle{
+  0%{ transform: translateX(0) rotate(0deg) scale(1); }
+  50%{ transform: translateX(0) rotate(4deg) scale(1.02); }
+  100%{ transform: translateX(0) rotate(-3deg) scale(1); }
 }
 
 @keyframes sparkle{
   0%{ opacity:0; transform: scale(.6); }
   30%{ opacity:1; transform: scale(1); }
   100%{ opacity:0; transform: scale(1.15); }
+}
+
+@keyframes tailWag{
+  from{ transform: rotate(-10deg); }
+  to{ transform: rotate(14deg); }
+}
+
+@keyframes headBob{
+  0%{ transform: translateY(0); }
+  50%{ transform: translateY(2px); }
+  100%{ transform: translateY(0); }
+}
+
+@keyframes faceIn{
+  from{ opacity:0; transform: scale(.96); }
+  to{ opacity:1; transform: scale(1); }
+}
+
+@keyframes blink{
+  0%, 92%, 100%{ transform: scaleY(1); }
+  94%{ transform: scaleY(.12); }
+  96%{ transform: scaleY(1); }
 }
 
 /* Floating hearts */
@@ -289,4 +357,5 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
   .scene #catGroup{ opacity:1; transform:none; }
   .scene #roseGroup{ opacity:1; transform:none; }
   .scene #sparkles{ opacity:1; transform:none; }
+  .scene #faceGroup{ opacity:1; transform:none; }
 }

@@ -18,8 +18,15 @@ function openOverlay() {
   void scene.offsetWidth;
   scene.classList.add('is-animated');
 
-  burstHearts(14);
-  startHearts(1200);
+  burstHearts(10);
+  startHearts(1100);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    // Sync with the main animation beats
+    window.setTimeout(() => burstHearts(8), 900);
+    window.setTimeout(() => burstHearts(10), 1650);
+  }
 }
 
 function closeOverlay() {
