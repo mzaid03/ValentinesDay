@@ -72,14 +72,55 @@
                   <!-- Head -->
                   <g id="head">
                     <g id="ears">
-                      <!-- Outer ears (soft triangle w/ curved base) -->
-                      <path d="M118 136 L142 80 L164 134 Q142 146 118 136 Z" fill="url(#fur2)"/>
-                      <path d="M184 134 L206 80 L232 136 Q206 146 184 134 Z" fill="url(#fur2)"/>
 
-                      <!-- Inner ears -->
-                      <path d="M129 133 L142 94 L156 131 Q142 139 129 133 Z" fill="rgba(255,179,199,.68)"/>
-                      <path d="M194 131 L206 94 L221 133 Q206 139 194 131 Z" fill="rgba(255,179,199,.68)"/>
-                    </g>
+  <!-- LEFT EAR (behind head) -->
+  <g id="earL">
+    <!-- outer fur -->
+    <path d="
+      M132 118
+      C118 88, 128 66, 150 70
+      C165 74, 168 96, 158 118
+      Z"
+      fill="url(#fur2)"
+      stroke="rgba(30,10,18,.18)"
+      stroke-width="2"
+    />
+
+    <!-- fluffy inner -->
+    <path d="
+      M140 112
+      C134 92, 142 80, 152 84
+      C158 88, 158 102, 152 112
+      Z"
+      fill="rgba(255,179,199,.65)"
+    />
+  </g>
+
+  <!-- RIGHT EAR -->
+  <g id="earR">
+    <!-- outer fur -->
+    <path d="
+      M214 118
+      C226 88, 216 66, 194 70
+      C178 74, 176 96, 186 118
+      Z"
+      fill="url(#fur2)"
+      stroke="rgba(30,10,18,.18)"
+      stroke-width="2"
+    />
+
+    <!-- inner ear -->
+    <path d="
+      M206 112
+      C212 92, 204 80, 194 84
+      C188 88, 188 102, 194 112
+      Z"
+      fill="rgba(255,179,199,.65)"
+    />
+  </g>
+
+</g>
+
                     <circle cx="174" cy="132" r="58" fill="url(#fur)" stroke="rgba(30,10,18,.18)" stroke-width="2"/>
                     <!-- Face (fades in after the turn) -->
                     <g id="faceGroup">
