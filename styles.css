@@ -299,22 +299,23 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 @keyframes catStory{
   0%{
     opacity:0;
-    transform: translate3d(-260px, 0, 0) scaleX(-1) scale(.98);
+    transform: translate3d(-260px, 0, 0) rotateY(180deg) scale(.98);
   }
   50%{
     opacity:1;
-    transform: translate3d(0, 0, 0) scaleX(-1) scale(1);
+    transform: translate3d(0, 0, 0) rotateY(180deg) scale(1);
   }
-  /* brief "turn" without going through microscopic scaleX values */
   68%{
-    transform: translate3d(0, 0, 0) scaleX(-1) scale(1);
+    opacity:1;
+    transform: translate3d(0, 0, 0) rotateY(180deg) scale(1);
   }
-  76%{
-    transform: translate3d(0, 0, 0) scaleX(1) scale(1.01);
+  78%{
+    opacity:1;
+    transform: translate3d(0, 0, 0) rotateY(0deg) scale(1.01);
   }
   100%{
     opacity:1;
-    transform: translate3d(0, 0, 0) scaleX(1) scale(1);
+    transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
   }
 }
 
@@ -419,4 +420,32 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 @media (max-width: 520px){
   .card{ backdrop-filter: none; }
   .popup{ background: rgba(255,255,255,.96); }
+}
+.scene{
+  width: min(480px, 92vw);
+  transform: translate3d(0, 6px, 0);
+  perspective: 900px;
+}
+.scene, .catSvg, #catGroup{
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+@media (max-width: 520px){
+  /* keep the main story animation, but reduce extra load */
+  .scene.is-animated #tailGroup{
+    animation: tailWag .9s ease-in-out .2s infinite alternate;
+  }
+
+  .scene.is-animated #head{
+    animation: none; /* remove headBob on phones */
+  }
+
+  .scene.is-animated .eye{
+    animation: blink 6s ease-in-out 2.5s infinite; /* blink less often */
+  }
+
+  /* also reduce filter-heavy effects */
+  .card{ backdrop-filter: none; }
+  .popup{ backdrop-filter: none; }
 }
