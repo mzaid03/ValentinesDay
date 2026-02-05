@@ -384,3 +384,57 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
   .scene #sparkles{ opacity:1; transform:none; }
   .scene #faceGroup{ opacity:1; transform:none; }
 }
+/* ==== PHONE SMOOTH TURN (keeps the turn, removes lag) ==== */
+@media (max-width: 520px){
+
+  /* Keep your initial state (mirrored start) */
+  .scene #catGroup{
+    transform: translate3d(-240px, 0, 0) scaleX(-1);
+    opacity: 0;
+  }
+
+  /* Override the animation on phones */
+  .scene.is-animated #catGroup{
+    animation: catStoryMobile 1.25s cubic-bezier(.2,.95,.15,1) both;
+  }
+
+  /* Slide in while facing left, then INSTANT flip to face forward */
+  @keyframes catStoryMobile{
+    0%{
+      opacity:0;
+      transform: translate3d(-260px, 0, 0) scaleX(-1) scale(.98);
+    }
+    55%{
+      opacity:1;
+      transform: translate3d(0, 0, 0) scaleX(-1) scale(1);
+    }
+    68%{
+      opacity:1;
+      transform: translate3d(0, 0, 0) scaleX(-1) scale(1);
+    }
+
+    /* the turn: snap flip (no tiny scales => no jank) */
+    69%{
+      transform: translate3d(0, 0, 0) scaleX(-1) scale(1);
+    }
+    70%{
+      transform: translate3d(0, 0, 0) scaleX(1) scale(1.01);
+    }
+
+    100%{
+      opacity:1;
+      transform: translate3d(0, 0, 0) scaleX(1) scale(1);
+    }
+  }
+
+  /* Helps mobile GPU keep it smooth */
+  #catGroup{
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0,0,0);
+    will-change: transform, opacity;
+  }
+
+  /* Reduce extra load right at the flip moment */
+  .scene.is-animated #head{ animation: none; }
+}
